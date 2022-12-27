@@ -1,2 +1,5 @@
-# DO180-apps
-DO180 Repository for Sample Applications
+Repo created for RedHat training purposes - RedHat OpenShift: containers and kubernetes
+
+Project 1:
+Create MySQL Databse instance in container.
+
