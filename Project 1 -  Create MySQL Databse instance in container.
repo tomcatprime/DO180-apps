@@ -30,3 +30,8 @@ check tables - SHOW TABLES;
 add record - INSERT INTO Projects (id, name, code) VALUES (1,'DevOps','DO180');
 
 exit
+
+
+Notes:
+Containers are executed in the background by using the -d flag, or interactively by using the -it flag.
+Some container images require environment variables that are set using the -e option with the podman run command.
