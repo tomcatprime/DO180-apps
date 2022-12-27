@@ -1,1 +1,32 @@
+login podman to registry.redhat.io - podman login registry.redhat.io
 
+Start a container from the Red Hat Container Catalog MySQL image.
+
+podman run --name mysql-basic \
+> -e MYSQL_USER=user -e MYSQL_PASSWORD=yupe your password \
+> -e MYSQL_DATABASE=items -e MYSQL_ROOT_PASSWORD=type your password \
+> -d registry.redhat.io/rhel8/mysql-80:1
+
+above downloads MySQL8.0 container image, then start and create database named items, owned by user and with specified password. Container runs in the background
+
+Let's verify that the container started and if there are any errors
+podman ps --format "{{.ID}} {{.Image}} {{.Names}}"
+output: id container - registry.redhat.io/rhel8/mysql-80:1 mysql-basic
+
+accessing bash inside container - podman exec -it mysql-basic /bin/bash
+
+enter mysql - mysql -uroot
+check databases - show databases;
+changed directory to "items" database - USE items;
+create table "Projects" in the "items" DB
+
+CREATE TABLE Projects (id int NOT NULL,
+-> name varchar(255) DEFAULT NULL,
+-> code varchar(255) DEFAULT NULL,
+-> PRIMARY KEY (id));
+
+check tables - SHOW TABLES;
+
+add record - INSERT INTO Projects (id, name, code) VALUES (1,'DevOps','DO180');
+
+exit
